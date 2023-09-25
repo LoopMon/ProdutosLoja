@@ -22,10 +22,6 @@ public class ProdutosLoja {
             System.out.print(">> ");
             opcao = input.nextByte();
             
-            if (opcao == 6) {
-                ManipuladorArquivo.escritor(path);
-            }
-            
             ManipuladorArquivo.escolherOpcao(path, opcao);
         } while (opcao != 5);
     }
