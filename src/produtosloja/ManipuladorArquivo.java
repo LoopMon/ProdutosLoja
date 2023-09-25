@@ -9,8 +9,10 @@ import java.util.Scanner;
 
 public class ManipuladorArquivo {
     
-    private static String lerArquivo(String path) throws IOException {
+    // Retorna os registros do arquivo.txt
+    private static String[] lerArquivo(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
+        String[] registros;
         String arquivo = "";
         String registro = buffRead.readLine();
         
@@ -24,9 +26,12 @@ public class ManipuladorArquivo {
         }
         buffRead.close();
         
-        return arquivo;
+        registros = arquivo.split("[;]");
+        
+        return registros;
     }
     
+    // Retorna todos os dados de uma coluna específica
     private static String[] pegarCampos(String[] registros, int coluna) {
         String[] registro;
         String[] campo = new String[registros.length];
@@ -42,7 +47,7 @@ public class ManipuladorArquivo {
     }
     
     private static String[] removerElementosRepetidos(String[] vetor) {
-        // Pegar as categorias e adicionar em uma String tirando os elementos repetidos
+        // variável para armazenar elementos únicos do vetor
         String elementos = vetor[0]+"|";
         boolean igual;
         for (int i = 1, tamVetor = vetor.length; i < tamVetor; i++) {
@@ -65,8 +70,7 @@ public class ManipuladorArquivo {
     
     // 1- Listar os itens do arquivo.txt
     public static void listarProdutos(String path) throws IOException {
-        String arquivo = lerArquivo(path);
-        String[] registros = arquivo.split("[;]");
+        String[] registros = lerArquivo(path);
         String[] registro;
         
         for (int i = 0, tamVetor = registros.length; i < tamVetor; i++) {
@@ -88,12 +92,11 @@ public class ManipuladorArquivo {
     
     // 2- Calcular total de vendas por cada categoria dos produtos
     public static void listarTotalPorCategoria(String path) throws IOException {
-        String arquivo = lerArquivo(path);
-        String[] registros = arquivo.split("[;]");
+        String[] registros = lerArquivo(path);
         String[] registro;
         String[] categorias;
         
-        // Pegar todos os valores de uma coluna
+        // Pegar todas as categorias dos produtos
         categorias = pegarCampos(registros, 2);
         categorias = removerElementosRepetidos(categorias);
         
@@ -122,12 +125,11 @@ public class ManipuladorArquivo {
     
     // 3- Listar total adquirido das vendas por loja
     public static void listarTotalVendidoPorLoja(String path) throws IOException {
-        String arquivo = lerArquivo(path);
-        String[] registros = arquivo.split("[;]");
+        String[] registros = lerArquivo(path);
         String[] registro;
 
-        double totalLojaA = 0.0;
-        double totalLojaB = 0.0;
+        double totalLojaA = 0;
+        double totalLojaB = 0;
 
         for (String linha : registros) {
             registro = linha.split("[|]");
@@ -148,8 +150,7 @@ public class ManipuladorArquivo {
     
     // 4- Mostrar valor absoluto e relativo de cada categoria
     public static void listarValorRelativoAbsolutoVendidoPorCategoria(String path) throws IOException {
-        String arquivo = lerArquivo(path);
-        String[] registros = arquivo.split("[;]");
+        String[] registros = lerArquivo(path);
         String[] registro;
         String[] categorias;
         double[] absoluto;
@@ -213,21 +214,12 @@ public class ManipuladorArquivo {
                 break;
             case 5: 
                 // Finalizar o Programa
+                System.out.println("=-=-=-=-=-=-=-=-=-=-=");
                 System.out.println("Fim do Programa...");
                 break;
             default:
                 System.out.println("Opção inválida...");
                 System.out.println("=-=-=-=-=-=-=-=-=-=-=");
         }
-    }
-    
-    public static void escritor(String path) throws IOException {
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        String linha = "";
-        Scanner in = new Scanner(System.in);
-        System.out.println("Escreva algo: ");
-        linha = in.nextLine();
-        buffWrite.append(linha + "\n");
-        buffWrite.close();
     }
 }

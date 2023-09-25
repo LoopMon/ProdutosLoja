@@ -12,6 +12,7 @@ public class ProdutosLoja {
         
         System.out.println(path);
         do {
+            // MENU DE OPÇÕES
             System.out.println("Escolha uma Opção:");
             System.out.println("1- Listar Produtos do registro");
             System.out.println("2- Listar total adquirido das vendas por categoria");
@@ -20,6 +21,10 @@ public class ProdutosLoja {
             System.out.println("5- Sair");
             System.out.print(">> ");
             opcao = input.nextByte();
+            
+            if (opcao == 6) {
+                ManipuladorArquivo.escritor(path);
+            }
             
             ManipuladorArquivo.escolherOpcao(path, opcao);
         } while (opcao != 5);
