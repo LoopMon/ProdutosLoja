@@ -1,0 +1,5 @@
+01|notebook|eletronico|A|4|1500.99|20
+02|geladeira|eletronico|B|6|3040.99|15
+03|mesa|movel|A|10|230.15|50
+04|cadeira|movel|A|4|90.99|200
+05|detergente|limpeza|B|10|12.34|200
