@@ -17,7 +17,7 @@ public class ProdutosLoja {
             System.out.println("1- Listar Produtos do registro");
             System.out.println("2- Listar total adquirido das vendas por categoria");
             System.out.println("3- Listar total adquirido das vendas por loja");
-            System.out.println("4- Listar o valor relativo de produtos vendidos por categoria");
+            System.out.println("4- Listar o valor relativo e absoluto dos produtos vendidos por categoria");
             System.out.println("5- Sair");
             System.out.print(">> ");
             opcao = input.nextByte();
